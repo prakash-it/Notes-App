@@ -6,8 +6,35 @@ export default function AddEditNotes({ noteData, type,onClose }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [tags, setTags] = useState([]);
+  const [error, setError]= useState(null);
 
-  const [error, setError]= useState()
+  const addNewNote = async ()=>{}
+
+  const editNote = async ()=>{}
+
+  const handleAddNote = ()=>{
+    if(!title)
+    {
+      setError("Please Enter the Title")
+      return;
+    }
+    if(!content)
+    {
+      setError('Please Enter the content')
+      return
+    }
+
+    setError('')
+
+    if(type === 'edit')
+    {
+      editNote()
+    } else
+    {
+      addNewNote()
+    }
+  }
+
   return (
     <div className='relative'>
       <button 
@@ -41,10 +68,13 @@ export default function AddEditNotes({ noteData, type,onClose }) {
       <div className='mt-3'>
         <label className='input-label'>Tags</label>
         <Tag tags={tags} setTags={setTags} />
-        <button className='btn-primary font-medium mt-5 p-3' onClick={() => {}}>
+        </div>
+
+        {error && <p className='text-xs text-red-500 pt-4'>{error}</p>}
+        <button className='btn-primary font-medium mt-5 p-3' onClick={handleAddNote}>
           Add
         </button>
-      </div>
+      
     </div>
   );
 }
