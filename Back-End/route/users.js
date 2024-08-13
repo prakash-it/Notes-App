@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt'); 
 const router = express.Router();
 const User = require('../models/user_model');
-const jwt = require('../utilities')
+
 
 router.post('/signup', async (req, res) => {
     try {
@@ -55,7 +55,7 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ message: 'Invalid email or password' });
         }
 
-        const token = jwt.sign({ id: user._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+       
         res.status(200).json({ message: 'Login successful', user });
     } catch (error) {
         console.error(error);
