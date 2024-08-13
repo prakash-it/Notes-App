@@ -1,18 +1,40 @@
 import React, { useState } from 'react'
 import Password from '../../components/input/Password'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Navbar from '../../components/Navbar/Navbar'
 import { validateEmail } from '../../utils/helper'
+import axios from 'axios'
+
 
 export const Signup = () => {
     const[name , setName]=useState()
     const[email,setEmail]=useState()
     const[password,setPassword]=useState()
     const[errors,setErrors]=useState(null)
-
+    const nav = useNavigate()
+    
 
     const submit = async (e) => {
         e.preventDefault()
+
+     const fromdata = {
+        username: name,
+        email:email,
+        password:password
+     }
+    
+
+
+     setName('')
+     setEmail('')
+     setPassword('')
+      
+     axios.post(`http://localhost:2000/api/signup`,fromdata)
+     .then(res=>console.log(res))
+     .catch(err=>console.log(err))
+     nav('/login')
+     
+
 
         if(!name)
             {
@@ -28,7 +50,6 @@ export const Signup = () => {
                 setErrors("Please enter a password");
                 return;
               }
-
     }
   return (
     <>

@@ -18,7 +18,7 @@ function App() {
     <>
     {routes}
     </>
-  )
+  )  
 }
 
 export default App
