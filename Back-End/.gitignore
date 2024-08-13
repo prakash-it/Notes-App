@@ -3,3 +3,9 @@ node_modules/
 
 # Ignore dotenv file
 .env
+
+# Ignore other potential environment-specific files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
